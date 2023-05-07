@@ -13,9 +13,21 @@
 <body class="flex-column min-100-vh">
     <header class="thunder">
       <h1 class="app-title">
-        <i class="fa-solid fa-cloud-bolt-sun" style="color: #d357fe;"></i>  Weather Mang
-     <i class="fab fa-github"></i> 
+        <i class="fab fa-github"></i> <i class="fa-solid fa-duck"></i>  Weather Mang <i class="fa-solid fa-cloud"></i>
+     <i class="fab fa-github"></i> <i class="fa-brands fa-github"></i> <i class="fa-solid fa-cloud-bolt-sun"></i>
       </h1>
       <p>Feline Fine
       </p>
     </header>
+
+    <main class="flex-row justify-space-between">
+    <div class="col-12 col-md-4">
+
+      <div class="card">
+        <h3 class="card-header text-uppercase">Punch in where you want to be</h3>
+        <form id="location" class="card-body">
+          <label class="form-label" for="locationname">Location:</label>
+          <input name="location" id="locationname" type="text" autofocus="true" class="form-input" />
+          <button type="submit" class="btn">Lets get this weather!</button>
+        </form>
+      </div>
