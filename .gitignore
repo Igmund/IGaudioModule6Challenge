@@ -1,1 +1,24 @@
-git@github.com:Igmund/IGaudioModule6Challenge.git
+# macOS specific files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+# Thumbnails
+._*
+
+# External Disk Files
+.Spotlight-V100
+.Trashes
+
+# Spotlight directory
+.metadata_never_index
+
+# macOS folders
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
