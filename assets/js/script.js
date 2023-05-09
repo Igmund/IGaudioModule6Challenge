@@ -1,6 +1,28 @@
 const apiKey = "43b7357822a36d0b892e1f9c4cb1bc5e";
 //var city = Need Geocoding API to implement conversion from long/lat
+//Need to pull city from form with event listener and add here
 //Use same text $$$ ways
+//Catch error coding required
+//Test in postman format of the paramaters
+
+
+/////GEOCODING - async?
+function getCoord(city) {
+let url = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${api}`
+//more to add here
+const response = await fetch(url);
+  const data = await response.json();
+
+  if (data.length > 0) {
+    const location = data[0];
+    const latitude = location.lat;
+    const longitude = location.lon;
+    return { latitude, longitude };
+  } else {
+    throw new Error('City not found');
+  }
+}
+//Push format to lat={lat}&lon={lon} and adjust city var accordingly
 
 //Get current weather in "city" - potential to use async?
 function getCurrentWeather(city) {
@@ -10,7 +32,7 @@ function getCurrentWeather(city) {
     return data;
   }
   
-  //Get forecast weather for "city" - potential to use async?
+  //Get forecast weather for "city" - potential to use async? 
  function getForecast(city) {
     const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
     const response = await fetch(url);
@@ -47,6 +69,7 @@ function displayForecast(data) {
     forecastContainer.innerHTML = '';
   
  // Loop through each of the required items and display
+ //CURRENT MIN AND MAX OUT OF 5 DAYS VS THE 16 NEED TO FIX otherwise scroll through all can calc
  forecastItems.forEach((item) => {
     const date = new Date(item.dt * 1000).toLocaleDateString();
     const icon = item.weather[0].icon;
