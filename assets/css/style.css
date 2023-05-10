@@ -80,7 +80,7 @@ btn {
   transform: translate(-1px, -1px);
 }
 
-.city-button {
+.city-history.button {
   background-color: var(--dark);
   color: var(--primary);
   padding: 10px;
