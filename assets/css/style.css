@@ -79,3 +79,15 @@ btn {
   box-shadow: 3px 3px var(--dark);
   transform: translate(-1px, -1px);
 }
+
+.city-button {
+  background-color: var(--dark);
+  color: var(--primary);
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.city-button:hover {
+   background-color: var(--secondary);
+}
