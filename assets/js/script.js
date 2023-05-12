@@ -34,50 +34,57 @@ locationForm.addEventListener('submit', (event) => {
   const cityInput = document.getElementById('city-input');
   const cityName = cityInput.value;
 
-  // Call  geoapp
-  fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${apiKey}`)
-    .then(response => response.json())
-    .then(data => {
-      if (data.length > 0) {
-        // Get the city coordinates from the API response
-        const lat = data[0].lat;
-        const lon = data[0].lon;
+// Call  geoapp
+fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${apiKey}`)
+  .then(response => response.json())
+  .then(data => {
+    if (data.length > 0) {
+      // Get the city coordinates from the API response
+      const lat = data[0].lat;
+      const lon = data[0].lon;
 
-        // Store the city name in the cityHistory array
-        cityHistory.unshift(cityName);
+      // Check if the city already exists in cityHistory
+      const cityIndex = cityHistory.indexOf(cityName);
+      if (cityIndex !== -1) {
+        // Remove the existing city from the array
+        cityHistory.splice(cityIndex, 1);
 
-        // Remove the oldest city if the cityHistory array has more than 6 items
-        if (cityHistory.length > 8) {
-            const oldestCity = cityHistory.pop();
-            const oldestCityButton = document.querySelector(`[data-city="${oldestCity}"]`);
-            if (oldestCityButton) {
-              oldestCityButton.parentNode.removeChild(oldestCityButton);
-            }
-          }
+        // Remove the corresponding button from the city-history div
+        const existingButton = document.querySelector(`button[data-city="${cityName}"]`);
+        if (existingButton) {
+          existingButton.parentNode.removeChild(existingButton);
+        }
+      }
 
-        // Save the cityHistory array to localStorage
-        localStorage.setItem('cityHistory', JSON.stringify(cityHistory));
+      // Store the city name in the cityHistory array
+      cityHistory.unshift(cityName);
 
-// Check if a button with the same city name already exists
-const existingButton = document.querySelector(`button[data-city="${cityName}"]`);
-if (existingButton) {
-  console.log('Button already exists for this city');
-} else {
-// Create a new city button and add it to the city-history div
-  const cityButton = document.createElement('button');
-  cityButton.innerText = cityName;
-  cityButton.setAttribute('data-city', cityName);
-  cityButton.className = "city-butt";
-  cityButton.addEventListener('click', () => {
-// Refetch the weather data for the selected city and display the results
-    fetchWeather(cityButton.getAttribute('data-city'));
-  });
-  cityHistoryDiv.insertBefore(cityButton, cityHistoryDiv.firstChild);
+      // Remove the oldest city if the cityHistory array has more than 8 items
+      if (cityHistory.length > 8) {
+        const oldestCity = cityHistory.pop();
+        const oldestCityButton = document.querySelector(`[data-city="${oldestCity}"]`);
+        if (oldestCityButton) {
+          oldestCityButton.parentNode.removeChild(oldestCityButton);
+        }
+      }
+
+      // Save the cityHistory array to localStorage
+      localStorage.setItem('cityHistory', JSON.stringify(cityHistory));
+
+      // Create a new city button and add it to the city-history div
+      const cityButton = document.createElement('button');
+      cityButton.innerText = cityName;
+      cityButton.setAttribute('data-city', cityName);
+      cityButton.className = "city-butt";
+      cityButton.addEventListener('click', () => {
+        // Refetch the weather data for the selected city and display the results
+        fetchWeather(cityButton.getAttribute('data-city'));
+      });
+      cityHistoryDiv.insertBefore(cityButton, cityHistoryDiv.firstChild);
 
   // Refetch the weather data for the selected city and display the results
   fetchWeather(cityName);
 }
-} 
 });
 });
 
@@ -140,4 +147,4 @@ function fetchWeather(cityName) {
           .catch(error => console.error(error));
       })
       .catch(error => console.error(error));
-}
+};
