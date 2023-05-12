@@ -47,7 +47,7 @@ locationForm.addEventListener('submit', (event) => {
         cityHistory.unshift(cityName);
 
         // Remove the oldest city if the cityHistory array has more than 6 items
-        if (cityHistory.length > 6) {
+        if (cityHistory.length > 8) {
             const oldestCity = cityHistory.pop();
             const oldestCityButton = document.querySelector(`[data-city="${oldestCity}"]`);
             if (oldestCityButton) {
@@ -81,17 +81,62 @@ cityHistoryDiv.insertBefore(cityButton, cityHistoryDiv.firstChild);
 
 // Function to fetch the weather data and display the results
 function fetchWeather(cityName) {
-  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`)
-    .then(response => response.json())
-    .then(data => {
-      // Display the weather data in the weather-container div
-      const weatherContainer = document.getElementById('weather-container');
-      weatherContainer.innerHTML = `
-        <h2>${data.name}</h2>
-        <p>${new Date(data.dt * 1000).toLocaleString()}</p>
-        <img src="http://openweathermap.org/img/w/${data.weather[0].icon}.png">
-        <p>Temperature: ${data.main.temp} °C</p>
-        <p>Wind: ${data.wind.speed} m/s</p>
-        <p>Humidity: ${data.main.humidity} %</p>
-      `})
-    };
+    // Fetch the current weather data
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`)
+      .then(response => response.json())
+      .then(data => {
+        // Display the weather data in the weather-container div
+        const weatherContainer = document.getElementById('weather-container');
+        weatherContainer.innerHTML = `
+          <h2>${data.name}</h2>
+          <p>${new Date(data.dt * 1000).toLocaleString()}</p>
+          <img src="http://openweathermap.org/img/w/${data.weather[0].icon}.png">
+          <p>Temperature: ${data.main.temp} °C</p>
+          <p>Wind: ${data.wind.speed} m/s</p>
+          <p>Humidity: ${data.main.humidity} %</p>
+        `;
+  
+        // Fetch the 5-day forecast data
+        fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}&units=metric`)
+          .then(response => response.json())
+          .then(data => {
+            // Get the forecast container
+            const forecastContainer = document.getElementById('forecast-container');
+  
+            // Clear previous forecast content
+            forecastContainer.innerHTML = '';
+  
+            // Iterate over the forecast data for each day
+            for (let i = 0; i < data.list.length; i += 8) {
+              const forecastItem = data.list[i];
+  
+              // Create a card element for each forecast day
+              const card = document.createElement('div');
+              card.classList.add('forecast-card');
+  
+              // Create the HTML content for the forecast day
+              const date = new Date(forecastItem.dt * 1000).toLocaleDateString();
+              const temperature = forecastItem.main.temp;
+              //Still want to adjust this for a min/max with calculation if i have time
+              const wind = forecastItem.wind.speed;
+              const humidity = forecastItem.main.humidity;
+              const iconCode = forecastItem.weather[0].icon;
+  
+              // Append the forecast data to the forecast card
+              card.innerHTML = `
+                <h3>${date}</h3>
+                <img src="http://openweathermap.org/img/w/${iconCode}.png">
+                <p>Temperature: ${temperature} °C</p>
+                <p>Wind: ${wind} m/s</p>
+                <p>Humidity: ${humidity} %</p>
+              `;
+  
+              // Append the forecast card to the forecast container
+              forecastContainer.appendChild(card);
+            }
+          })
+          .catch(error => console.error(error));
+      })
+      .catch(error => console.error(error));
+  }
+  
