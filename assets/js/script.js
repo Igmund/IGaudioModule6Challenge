@@ -58,25 +58,27 @@ locationForm.addEventListener('submit', (event) => {
         // Save the cityHistory array to localStorage
         localStorage.setItem('cityHistory', JSON.stringify(cityHistory));
 
-        // Create a new city button and add it to the city-history div
-   // Create a new city button and add it to the city-history div
-const cityButton = document.createElement('button');
-cityButton.innerText = cityName;
-cityButton.setAttribute('data-city', cityName);
-cityButton.className = "city-butt";
-cityButton.addEventListener('click', () => {
-  // Refetch the weather data for the selected city and display the results
-  fetchWeather(cityButton.getAttribute('data-city'));
-});
-cityHistoryDiv.insertBefore(cityButton, cityHistoryDiv.firstChild);
+// Check if a button with the same city name already exists
+const existingButton = document.querySelector(`button[data-city="${cityName}"]`);
+if (existingButton) {
+  console.log('Button already exists for this city');
+} else {
+// Create a new city button and add it to the city-history div
+  const cityButton = document.createElement('button');
+  cityButton.innerText = cityName;
+  cityButton.setAttribute('data-city', cityName);
+  cityButton.className = "city-butt";
+  cityButton.addEventListener('click', () => {
+// Refetch the weather data for the selected city and display the results
+    fetchWeather(cityButton.getAttribute('data-city'));
+  });
+  cityHistoryDiv.insertBefore(cityButton, cityHistoryDiv.firstChild);
 
-        // Refetch the weather data for the selected city and display the results
-        fetchWeather(cityName);
-      } else {
-        console.error('Nah fairly certain that is not a real place');
-      }
-    })
-    .catch(error => console.error(error));
+  // Refetch the weather data for the selected city and display the results
+  fetchWeather(cityName);
+}
+} 
+});
 });
 
 // Function to fetch the weather data and display the results
@@ -138,5 +140,4 @@ function fetchWeather(cityName) {
           .catch(error => console.error(error));
       })
       .catch(error => console.error(error));
-  }
-  
+}
