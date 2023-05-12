@@ -73,7 +73,7 @@ cityHistoryDiv.insertBefore(cityButton, cityHistoryDiv.firstChild);
         // Refetch the weather data for the selected city and display the results
         fetchWeather(cityName);
       } else {
-        console.error('Nah fairly certain tha is not a real place');
+        console.error('Nah fairly certain that is not a real place');
       }
     })
     .catch(error => console.error(error));
@@ -90,7 +90,7 @@ function fetchWeather(cityName) {
         weatherContainer.innerHTML = `
           <h2>${data.name}</h2>
           <p>${new Date(data.dt * 1000).toLocaleString()}</p>
-          <img src="http://openweathermap.org/img/w/${data.weather[0].icon}.png">
+          <img src="http://openweathermap.org/img/w/${data.weather[0].icon}.png" style="width: 50px; height: 50px;">
           <p>Temperature: ${data.main.temp} °C</p>
           <p>Wind: ${data.wind.speed} m/s</p>
           <p>Humidity: ${data.main.humidity} %</p>

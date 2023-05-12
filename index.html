@@ -6,16 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="https://kit.fontawesome.com/16b6e84d51.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="./assets/css/style.css" />
-
+  
   <title>Weather Mang</title>
 </head>
 
 <body class="flex-column min-100-vh">
     <header class="thunder">
       <h1 class="app-title">
-        <i class="fab fa-github"></i> <i class="fa-solid fa-duck"></i>  Weather Mang <i class="fa-solid fa-cloud"></i>
-     <i class="fab fa-github"></i> <i class="fa-brands fa-github"></i> <i class="fa-solid fa-cloud-bolt-sun"></i>
+     Weather Mang <i class="fa-solid fa-cloud"></i>
+    
       </h1>
       <p>Feline Fine
       </p>
@@ -28,27 +29,47 @@
         <h3 class="card-header text-uppercase">Punch in where you want to be</h3>
         <form id="location-form" class="card-body">
           <label class="form-label" for="location-name">Location:</label>
-          <input name="location-city" id="city-input" type="text" placeholder="City Name" autofocus="true" class="form-input" />
+          <input name="location-city" id="city-input" type="text" placeholder="Type City Name Here Pal" autofocus="true" class="form-input" />
           <button type="submit" class="btn">Lets get this weather!</button>
         </form>
       </div>
 
-      <div class="col-12 col-md-8">
-        <h2 class="search-history"> Wanna suss these places again? <span id="city"></span></h2>
-        <div id="city-history" class="list-group"></div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-history">
+              <div class="card-body">
+                <h2 class="search-history">Wanna suss these places again? <span id="city"></span></h2>
+                <div id="city-history" class="list-group"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-rightnow">
+              <div class="card-body">
+                <h2 class="subtitle">Weather rn Mothertruckers! <span id="city"></span></h2>
+                <div id="weather-container" class="list-group"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="card">
+            <div class="card-forecast">
+              <div class="card-body">
+                <h2 class="subtitle">Weather forecast Mothertruckers! <span id="city"></span></h2>
+                <div id="forecast-container" class="list-group"></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div class="col-12 col-md-8">
-        <h2 class="subtitle"> Weather rn Mothertruckers! <span id="city"></span></h2>
-        <div id="weather-container" class="list-group"></div>
-      </div>
-
-      <div class="col-12 col-md-8">
-        <h2 class="subtitle"> Weather forecast Mothertruckers! <span id="city"></span></h2>
-        <div id="forecast-container" class="list-group"></div>
-      </div>
-
-    </main>
+      
+                     
+             
+          </main>
 
 
       <script src="./assets/js/script.js"></script>
