@@ -64,7 +64,7 @@
   border-radius: var(--border-radius);
 }
 
-btn {
+.btn {
   font-size: 1rem;
   text-decoration: none;
   padding: 6px 5px;
@@ -80,7 +80,7 @@ btn {
   transform: translate(-1px, -1px);
 }
 
-.city-history.button {
+.city-butt {
   background-color: var(--dark);
   color: var(--primary);
   padding: 10px;
@@ -88,6 +88,6 @@ btn {
   margin-bottom: 5px;
 }
 
-.city-button:hover {
+.city-butt:hover {
    background-color: var(--secondary);
 }

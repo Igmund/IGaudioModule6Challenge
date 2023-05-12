@@ -46,22 +46,29 @@ locationForm.addEventListener('submit', (event) => {
         // Store the city name in the cityHistory array
         cityHistory.unshift(cityName);
 
-        // Remove the oldest city if the cityHistory array has more than 8 items
-        if (cityHistory.length > 8) {
-          cityHistory.pop();
-        }
+        // Remove the oldest city if the cityHistory array has more than 6 items
+        if (cityHistory.length > 6) {
+            const oldestCity = cityHistory.pop();
+            const oldestCityButton = document.querySelector(`[data-city="${oldestCity}"]`);
+            if (oldestCityButton) {
+              oldestCityButton.parentNode.removeChild(oldestCityButton);
+            }
+          }
 
         // Save the cityHistory array to localStorage
         localStorage.setItem('cityHistory', JSON.stringify(cityHistory));
 
         // Create a new city button and add it to the city-history div
-        const cityButton = document.createElement('button');
-        cityButton.innerText = cityName;
-        cityButton.addEventListener('click', () => {
-          // Refetch the weather data for the selected city and display the results
-          fetchWeather(cityName);
-        });
-        cityHistoryDiv.insertBefore(cityButton, cityHistoryDiv.firstChild);
+   // Create a new city button and add it to the city-history div
+const cityButton = document.createElement('button');
+cityButton.innerText = cityName;
+cityButton.setAttribute('data-city', cityName);
+cityButton.className = "city-butt";
+cityButton.addEventListener('click', () => {
+  // Refetch the weather data for the selected city and display the results
+  fetchWeather(cityButton.getAttribute('data-city'));
+});
+cityHistoryDiv.insertBefore(cityButton, cityHistoryDiv.firstChild);
 
         // Refetch the weather data for the selected city and display the results
         fetchWeather(cityName);
