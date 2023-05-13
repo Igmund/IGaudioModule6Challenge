@@ -1,6 +1,17 @@
 //set API key so dont have to type constantly
 const apiKey = "43b7357822a36d0b892e1f9c4cb1bc5e";
 
+//Get subtitle element and hide on page load
+// var subtitle = document.querySelector('.subtitle');
+// subtitle.classList.add('hide-subtitle');
+
+//Same for data not yet loaded
+document.addEventListener('DOMContentLoaded', function() {
+  const subtitle = document.querySelector('.subtitle');
+  subtitle.classList.add('hide-subtitle');
+});
+
+
 // Get the city-history div element
 const cityHistoryDiv = document.getElementById('city-history');
 
@@ -104,7 +115,14 @@ function fetchWeather(cityName) {
           <p>Temperature: ${data.main.temp} °C</p>
           <p>Wind: ${data.wind.speed} m/s</p>
           <p>Humidity: ${data.main.humidity} %</p>
-        `;
+        `;    
+        const currentWeatherSubtitle = document.getElementById('current-weather-subtitle');
+currentWeatherSubtitle.classList.remove('hide-subtitle');
+var forecastSubtitle = document.getElementById('forecast-subtitle');
+  forecastSubtitle.style.display = 'block';
+
+})
+.catch(error => console.error(error));
   
    // Fetch the 5-day forecast data
 fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}&units=metric`)
@@ -143,15 +161,16 @@ fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${ap
       <p>Humidity: ${humidity} %</p>
     `;
 
-    // Append the forecast card to the forecast container
+       // Append the forecast card to the forecast container
     forecastContainer.appendChild(card);
-  }
+      }
+
+      const forecastSubtitle = document.getElementById('forecast-subtitle');
+forecastSubtitle.classList.remove('hide-subtitle');
+
 })
 .catch(error => console.error(error));
-
-      })
-      .catch(error => console.error(error));
-};
+}
 
 
-//TODO Make the title so it displays city ie. "Adelaide Weather rn MOFOS"git
+//TODO Make the title so it displays city ie. "Adelaide Weather rn MOFOS"SSHWET
