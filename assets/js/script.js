@@ -1,16 +1,29 @@
 //set API key so dont have to type constantly
 const apiKey = "43b7357822a36d0b892e1f9c4cb1bc5e";
 
-//Get subtitle element and hide on page load
-// var subtitle = document.querySelector('.subtitle');
-// subtitle.classList.add('hide-subtitle');
+// Function to hide or display the borders based on the subtitle visibility
+function toggleBorders() {
+  const forecastSubtitle = document.querySelector('.forecast-subtitle');
+  const cardRightnow = document.querySelector('.card-rightnow');
+  const cardForecast = document.querySelector('.card-forecast');
+
+  if (forecastSubtitle.classList.contains('hide-subtitle')) {
+    cardRightnow.style.border = 'none';
+    cardForecast.style.border = 'none';
+  } else {
+       cardRightnow.style.border = ''; 
+    cardForecast.style.border = '';
+  }
+}
+
+// Call toggleBorders function on page load
+window.addEventListener('DOMContentLoaded', toggleBorders);
 
 //Same for data not yet loaded
 document.addEventListener('DOMContentLoaded', function() {
   const subtitle = document.querySelector('.subtitle');
   subtitle.classList.add('hide-subtitle');
 });
-
 
 // Get the city-history div element
 const cityHistoryDiv = document.getElementById('city-history');
@@ -109,7 +122,7 @@ function fetchWeather(cityName) {
         const weatherContainer = document.getElementById('weather-container');
         weatherContainer.classList.add('weather-card');
         weatherContainer.innerHTML = `
-          <h2>${data.name}</h2>
+          <h3>${data.name}</h3>
           <p>${new Date(data.dt * 1000).toLocaleString()}</p>
           <img src="http://openweathermap.org/img/w/${data.weather[0].icon}.png" style="width: 50px; height: 50px;">
           <p>Temperature: ${data.main.temp} °C</p>
@@ -145,32 +158,44 @@ fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${ap
     // Create the HTML content for the forecast day
     const date = new Date(forecastItem.dt * 1000).toLocaleDateString();
     const temperature = forecastItem.main.temp;
-    // Still want to adjust this for a min/max with calculation if I have time
     const wind = forecastItem.wind.speed;
     const humidity = forecastItem.main.humidity;
     const iconCode = forecastItem.weather[0].icon;
     const cityName = data.city.name;
 
-    // Append the forecast data to the forecast card
-    card.innerHTML = `
-      <h3>${cityName}</h3>
-      <h4>${date}</h4>
-      <img src="http://openweathermap.org/img/w/${iconCode}.png">
-      <p>Temperature: ${temperature} °C</p>
-      <p>Wind: ${wind} m/s</p>
-      <p>Humidity: ${humidity} %</p>
-    `;
+    // Find minimum and maximum temperatures for the day
+    const forecastDay = forecastItem.dt_txt.split(' ')[0];
+    const temperaturesForDay = data.list.filter(item => item.dt_txt.includes(forecastDay)).map(item => item.main.temp);
+    const minimum = Math.min(...temperaturesForDay);
+    const maximum = Math.max(...temperaturesForDay);
 
-       // Append the forecast card to the forecast container
+// Get the current time as a string
+const currentTime = new Date();
+const timeString = currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+
+   // Append the forecast data to the forecast card
+card.innerHTML = `
+<h3>${cityName}</h3>
+<h4>${date}</h4>
+<img src="http://openweathermap.org/img/w/${iconCode}.png">
+<p>Temp at ${timeString}: ${temperature} °C</p>
+<p>Wind: ${wind} m/s</p>
+<p>Humidity: ${humidity} %</p>
+<p>Minimum: ${minimum} °C</p>
+<p>Maximum: ${maximum} °C</p>
+`;
+
+    // Append the forecast card to the forecast container
     forecastContainer.appendChild(card);
-      }
+  }
 
-      const forecastSubtitle = document.getElementById('forecast-subtitle');
-forecastSubtitle.classList.remove('hide-subtitle');
-
+  const forecastSubtitle = document.getElementById('forecast-subtitle');
+  forecastSubtitle.classList.remove('hide-subtitle');
+  
 })
+
+////
+
 .catch(error => console.error(error));
 }
 
-
-//TODO Make the title so it displays city ie. "Adelaide Weather rn MOFOS"SSHWET

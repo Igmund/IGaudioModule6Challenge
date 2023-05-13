@@ -28,14 +28,12 @@
     max-width: 75%;
   }
 
-  /* Header section */
 header {
   background-color: #f0f0f0;
   padding: 20px;
   text-align: center;
 }
 
-/* Left column */
 .row {
   display: flex;
 }
@@ -49,27 +47,16 @@ header {
   margin: auto; 
 }
 
-/* Right column */
 .card-flex-column {
   width: 100%;
 }
 
-/* Main content */
 main {
   display: flex;
   justify-content: space-between;
   padding: 20px;
 }
 
-/* .card-rightnow,
-.card-forecast {
-  margin-bottom: 20px;
-  border: 3px solid var(--dark);
-  border-radius: var(--border-radius);
-  width: 100%;
-  display: block;
-  box-sizing: border-box;
-} */
 
 .card-rightnow,
 .card-forecast {
@@ -188,7 +175,7 @@ main {
 
 .forecast-container {
   display: flex;
-  flex-wrap: nowrap; /* Ensures the forecast cards stay in one row */
+  flex-wrap: nowrap;
 }
 
 .forecast-card h3 {
@@ -245,6 +232,3 @@ main {
 }
 
 
-
-
-/* Remove the title from the shading and just highlight the weather, make it consistent with other one where Date is bold */
