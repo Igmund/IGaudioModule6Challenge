@@ -19,10 +19,10 @@ WHEN I click on a city in the search history
 THEN I am again presented with current and future conditions for that city
 
 Mock-up
-https://github.com/Igmund/IGaudioModule6Challenge/blob/main/assets/images/Mock-up.png
+(https://github.com/Igmund/IGaudioModule6Challenge/blob/main/assets/images/Mock-up.png)
 
 Real Deal
-https://github.com/Igmund/IGaudioModule6Challenge/blob/main/assets/images/Image%2013-5-2023%20at%209.29%20pm.jpg
+(https://github.com/Igmund/IGaudioModule6Challenge/blob/main/assets/images/Image%2013-5-2023%20at%209.29%20pm.jpg)
 
 APIS utilised
 https://api.openweathermap.org/geo/1.0/direct?
