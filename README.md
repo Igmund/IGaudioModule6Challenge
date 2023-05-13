@@ -18,7 +18,10 @@ WHEN I click on a city in the search history
 THEN I am again presented with current and future conditions for that city
 
 Mock-up
-https://courses.bootcampspot.com/courses/3045/files/2567716/preview
+(Mock-up.png)
+
+Real Deal
+image.png
 
 APIS
 http://api.openweathermap.org/geo/1.0/direct?
