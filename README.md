@@ -32,7 +32,7 @@ THEN I am again presented with current and future conditions for that city
 
 ![Mock-up](assets/images/Mock-up.png)
 
-![Real-Deal](assets/images/Real-deal)
+![Real-Deal](assets/images/Real-deal.jpg)
 
 **APIS utilised**
 
