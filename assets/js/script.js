@@ -96,6 +96,7 @@ function fetchWeather(cityName) {
       .then(data => {
         // Display the weather data in the weather-container div
         const weatherContainer = document.getElementById('weather-container');
+        weatherContainer.classList.add('weather-card');
         weatherContainer.innerHTML = `
           <h2>${data.name}</h2>
           <p>${new Date(data.dt * 1000).toLocaleString()}</p>
@@ -105,46 +106,52 @@ function fetchWeather(cityName) {
           <p>Humidity: ${data.main.humidity} %</p>
         `;
   
-        // Fetch the 5-day forecast data
-        fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}&units=metric`)
-          .then(response => response.json())
-          .then(data => {
-            // Get the forecast container
-            const forecastContainer = document.getElementById('forecast-container');
-  
-            // Clear previous forecast content
-            forecastContainer.innerHTML = '';
-  
-            // Iterate over the forecast data for each day
-            for (let i = 0; i < data.list.length; i += 8) {
-              const forecastItem = data.list[i];
-  
-              // Create a card element for each forecast day
-              const card = document.createElement('div');
-              card.classList.add('forecast-card');
-  
-              // Create the HTML content for the forecast day
-              const date = new Date(forecastItem.dt * 1000).toLocaleDateString();
-              const temperature = forecastItem.main.temp;
-              //Still want to adjust this for a min/max with calculation if i have time
-              const wind = forecastItem.wind.speed;
-              const humidity = forecastItem.main.humidity;
-              const iconCode = forecastItem.weather[0].icon;
-  
-              // Append the forecast data to the forecast card
-              card.innerHTML = `
-                <h3>${date}</h3>
-                <img src="http://openweathermap.org/img/w/${iconCode}.png">
-                <p>Temperature: ${temperature} °C</p>
-                <p>Wind: ${wind} m/s</p>
-                <p>Humidity: ${humidity} %</p>
-              `;
-  
-              // Append the forecast card to the forecast container
-              forecastContainer.appendChild(card);
-            }
-          })
-          .catch(error => console.error(error));
+   // Fetch the 5-day forecast data
+fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}&units=metric`)
+.then(response => response.json())
+.then(data => {
+  // Get the forecast container
+  const forecastContainer = document.getElementById('forecast-container');
+
+  // Clear previous forecast content
+  forecastContainer.innerHTML = '';
+
+  // Iterate over the forecast data for each day
+  for (let i = 0; i < data.list.length; i += 8) {
+    const forecastItem = data.list[i];
+
+    // Create a card element for each forecast day
+    const card = document.createElement('div');
+    card.classList.add('forecast-card');
+
+    // Create the HTML content for the forecast day
+    const date = new Date(forecastItem.dt * 1000).toLocaleDateString();
+    const temperature = forecastItem.main.temp;
+    // Still want to adjust this for a min/max with calculation if I have time
+    const wind = forecastItem.wind.speed;
+    const humidity = forecastItem.main.humidity;
+    const iconCode = forecastItem.weather[0].icon;
+    const cityName = data.city.name;
+
+    // Append the forecast data to the forecast card
+    card.innerHTML = `
+      <h3>${cityName}</h3>
+      <h4>${date}</h4>
+      <img src="http://openweathermap.org/img/w/${iconCode}.png">
+      <p>Temperature: ${temperature} °C</p>
+      <p>Wind: ${wind} m/s</p>
+      <p>Humidity: ${humidity} %</p>
+    `;
+
+    // Append the forecast card to the forecast container
+    forecastContainer.appendChild(card);
+  }
+})
+.catch(error => console.error(error));
+
       })
       .catch(error => console.error(error));
 };
+
+
+//TODO Make the title so it displays city ie. "Adelaide Weather rn MOFOS"git
