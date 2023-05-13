@@ -34,10 +34,13 @@ THEN I am again presented with current and future conditions for that city
 
 ![Real-Deal](assets/images/Real-deal)
 
-APIS utilised
+**APIS utilised**
+
 https://api.openweathermap.org/geo/1.0/direct?
+
 https://api.openweathermap.org/data/2.5/weather?
 
-Bootstrap
+**Bootstrap**
+
 https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css
 
