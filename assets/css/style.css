@@ -42,14 +42,6 @@ header {
   flex: 0 0 600px; 
 }
 
-.card.max-width-600 {
-  max-width: 600px; 
-  margin: auto; 
-}
-
-.card-flex-column {
-  width: 100%;
-}
 
 main {
   display: flex;
@@ -61,15 +53,13 @@ main {
 .card-rightnow,
 .card-forecast {
   margin-bottom: 20px;
-  border: 3px solid var(--dark);
-  border-radius: var(--border-radius);
+  /* border: 3px solid var(--dark);
+  border-radius: var(--border-radius); */
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   box-sizing: border-box;
 }
-
-
 
   .card {
     margin: 0 0 20px 0;
@@ -136,7 +126,6 @@ main {
    background-color: var(--secondary);
 }
 
-
 .max-width-600 {
   max-width: 600px;
 }
@@ -146,26 +135,6 @@ main {
   flex-direction: column;
 }
 
-.forecast-card {
-  display: flex;
-  max-width: 200px;
-  flex-direction: column;
-  align-items: center;
-  min-width: 200px;
-  padding: 10px;
-  margin: 10px;
-  background-color: var(--background-colour);
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  flex: 1;
-}
-
-@media (max-width: 768px) {
-  .forecast-card {
-    max-width: 100%;
-  }
-}
-
 .forecast-container {
   display: flex;
   flex-wrap: wrap;
@@ -173,12 +142,29 @@ main {
   justify-content: flex-start;
 }
 
-.forecast-container {
-  display: flex;
-  flex-wrap: nowrap;
+.forecast-card {
+  flex: 1 1 200px;
+  margin: 10px;
+  background-color: lightgray;
+  padding: 20px;
+  background-color: var(--background-colour);
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.forecast-card h3 {
+@media (max-width: 768px) {
+  .forecast-card {
+    flex-basis: 100%;
+  }}
+
+  @media (max-width: 400px) {
+    .forecast-container {
+      flex-direction: column;
+      align-items: flex-start;
+    }}
+    
+
+  .forecast-card h3 {
   margin-top: 0;
 }
 

@@ -1,23 +1,24 @@
 //set API key so dont have to type constantly
 const apiKey = "43b7357822a36d0b892e1f9c4cb1bc5e";
 
+//Couldn't get borders to work - left in here to work on at later stage
 // Function to hide or display the borders based on the subtitle visibility
-function toggleBorders() {
-  const forecastSubtitle = document.querySelector('.forecast-subtitle');
-  const cardRightnow = document.querySelector('.card-rightnow');
-  const cardForecast = document.querySelector('.card-forecast');
+// function toggleBorders() {
+//   const forecastSubtitle = document.querySelector('.forecast-subtitle');
+//   const cardRightnow = document.querySelector('.card-rightnow');
+//   const cardForecast = document.querySelector('.card-forecast');
 
-  if (forecastSubtitle.classList.contains('hide-subtitle')) {
-    cardRightnow.style.border = 'none';
-    cardForecast.style.border = 'none';
-  } else {
-       cardRightnow.style.border = ''; 
-    cardForecast.style.border = '';
-  }
-}
+//   if (forecastSubtitle.classList.contains('hide-subtitle')) {
+//     cardRightnow.style.border = 'none';
+//     cardForecast.style.border = 'none';
+//   } else {
+//        cardRightnow.style.border = ''; 
+//     cardForecast.style.border = '';
+//   }
+// }
 
 // Call toggleBorders function on page load
-window.addEventListener('DOMContentLoaded', toggleBorders);
+// window.addEventListener('DOMContentLoaded', toggleBorders);
 
 //Same for data not yet loaded
 document.addEventListener('DOMContentLoaded', function() {
