@@ -18,13 +18,9 @@ THEN I am presented with a 5-day forecast that displays the date, an icon repres
 WHEN I click on a city in the search history
 THEN I am again presented with current and future conditions for that city
 
-```md
-    ![Mockup](assets/images/Mock-up.png)
-    ```
+![Mock-up](assets/images/Mock-up.png)
 
-```md
-    ![Real Deal](assets/images/Image 13-5-2023 at 9.29 pm.jpg)
-    ```
+![Real-Deal](assets/images/Image 13-5-2023 at 9.29 pm.jpg)
 
 APIS utilised
 https://api.openweathermap.org/geo/1.0/direct?
