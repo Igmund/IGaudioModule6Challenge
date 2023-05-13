@@ -60,7 +60,7 @@ locationForm.addEventListener('submit', (event) => {
   const cityName = cityInput.value;
 
 // Call  geoapp
-fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${apiKey}`)
+fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${apiKey}`)
   .then(response => response.json())
   .then(data => {
     if (data.length > 0) {
@@ -125,7 +125,7 @@ function fetchWeather(cityName) {
         weatherContainer.innerHTML = `
           <h3>${data.name}</h3>
           <p>${new Date(data.dt * 1000).toLocaleString()}</p>
-          <img src="http://openweathermap.org/img/w/${data.weather[0].icon}.png" style="width: 50px; height: 50px;">
+          <img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png" style="width: 50px; height: 50px;">
           <p>Temperature: ${data.main.temp} °C</p>
           <p>Wind: ${data.wind.speed} m/s</p>
           <p>Humidity: ${data.main.humidity} %</p>
@@ -178,7 +178,7 @@ const timeString = currentTime.toLocaleTimeString([], { hour: '2-digit', minute:
 card.innerHTML = `
 <h3>${cityName}</h3>
 <h4>${date}</h4>
-<img src="http://openweathermap.org/img/w/${iconCode}.png">
+<img src="https://openweathermap.org/img/w/${iconCode}.png">
 <p>Temp at ${timeString}: ${temperature} °C</p>
 <p>Wind: ${wind} m/s</p>
 <p>Humidity: ${humidity} %</p>

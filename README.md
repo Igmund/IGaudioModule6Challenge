@@ -1,5 +1,6 @@
 # IGaudioModule6Challenge
 Server Side APIs - Weather Dashboard
+Link to deployed URL https://igmund.github.io/IGaudioModule6Challenge/
 
 User Story
 AS A traveler
@@ -24,7 +25,7 @@ Real Deal
 https://github.com/Igmund/IGaudioModule6Challenge/blob/main/assets/images/Image%2013-5-2023%20at%209.29%20pm.jpg
 
 APIS utilised
-http://api.openweathermap.org/geo/1.0/direct?
+https://api.openweathermap.org/geo/1.0/direct?
 https://api.openweathermap.org/data/2.5/weather?
 
 Bootstrap
