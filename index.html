@@ -21,51 +21,46 @@
 
   
 
-    <main class="flex-row justify-space-between">
-    
-      <div class="row">
-        <div class="col-md-6 p-0">
-          <div class="card max-width-600">
-            <div class="d-flex justify-content-center">
-              <h3 class="card-header text-uppercase text-center fixed-width">Punch in where you want to be!</h3>
-            </div>
-            <form id="location-form" class="card-body">
-              <label class="form-label" for="location-name">Location:</label>
-              <input name="location-city" id="city-input" type="text" placeholder="Type City Name Here Pal" autofocus="true" class="form-input" />
-              <button type="submit" class="btn">Let's get this weather!</button>
-            </form>
-            <div class="card-history">
-              <div class="card-body">
-                <h2 class="search-history">Wanna suss these places again? <span id="city"></span></h2>
-                <div id="city-history" class="list-group"></div>
-              </div>
-            </div>
+<main class="flex-row justify-space-between">
+  <div class="row">
+    <div class="col-md-6 p-0">
+      <div class="card max-width-600">
+        <div class="d-flex justify-content-center">
+          <h3 class="card-header text-uppercase text-center fixed-width">Punch in where you want to be!</h3>
+        </div>
+        <form id="location-form" class="card-body">
+          <label class="form-label" for="location-name">Location:</label>
+          <input name="location-city" id="city-input" type="text" placeholder="Type City Name Here Pal" autofocus="true" class="form-input" />
+          <button type="submit" class="btn">Let's get this weather!</button>
+        </form>
+        <div class="card-history">
+          <div class="card-body">
+            <h2 class="search-history">Wanna suss these places again? <span id="city"></span></h2>
+            <div id="city-history" class="list-group"></div>
           </div>
         </div>
-        <div class="col-md-6 p-0">
-          <div class="card-flex-column">
-            <div class="card-rightnow">
-              <div class="card-body">
-                <h2 id ="current-weather-subtitle" class="subtitle">Weather rn Mothertruckers! <span id="city"></span></h2>
-                <div id="weather-container" class="list-group"></div>
-              </div>
+      </div>
+    </div>
+    <div class="col-md-6 p-0">
+      <div class="flex-container">
+        <div class="card-flex-column">
+          <div class="card-rightnow">
+            <div class="card-body">
+              <h2 id="current-weather-subtitle" class="subtitle">Weather rn Mothertruckers! <span id="city"></span></h2>
+              <div id="weather-container" class="list-group"></div>
             </div>
-            <div class="card-forecast">
-              <div class="card-body">
-                <h2 id = "forecast-subtitle" class="subtitle">Forecast Mothertruckers! <span id="city"></span></h2>
-                <div id="forecast-container" class="list-group"></div>
-              </div>
+          </div>
+          <div class="card-forecast">
+            <div class="card-body">
+              <h2 id="forecast-subtitle" class="subtitle">Forecast Mothertruckers! <span id="city"></span></h2>
+              <div id="forecast-container" class="list-group forecast-container"></div>
             </div>
           </div>
         </div>
       </div>
-      
-      
-      
-      
-                     
-             
-          </main>
+    </div>
+  </div>
+</main>
 
 
       <script src="./assets/js/script.js"></script>
