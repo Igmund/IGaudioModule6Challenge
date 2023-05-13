@@ -20,7 +20,7 @@ THEN I am again presented with current and future conditions for that city
 
 ![Mock-up](assets/images/Mock-up.png)
 
-![Real-Deal](assets/images/Image 13-5-2023 at 9.29 pm.jpg)
+![Real-Deal](assets/images/Real-deal)
 
 APIS utilised
 https://api.openweathermap.org/geo/1.0/direct?
